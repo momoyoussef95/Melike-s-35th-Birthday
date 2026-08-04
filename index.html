@@ -79,6 +79,26 @@
       transition: background 0.4s ease, color 0.4s ease;
     }
 
+    /* ─── Turkish Translation ────────────────────────────────────── */
+    .tr {
+      display: block;
+      font-size: 0.72em;
+      font-style: italic;
+      font-weight: 300;
+      margin-top: 0.25em;
+      text-transform: none;
+      letter-spacing: 0.02em;
+      opacity: 0.68;
+    }
+
+    .hero .tr,
+    .finale .tr,
+    .closing .tr,
+    .family .tr {
+      color: rgba(223, 160, 90, 0.8);
+      opacity: 1;
+    }
+
     /* ─── HERO ───────────────────────────────────────────────────── */
     .hero {
       position: relative;
@@ -156,7 +176,7 @@
       font-weight: 300;
       font-size: clamp(0.95rem, 1.8vw, 1.25rem);
       color: rgba(240, 232, 216, 0.55);
-      max-width: 400px;
+      max-width: 440px;
       line-height: 2;
       opacity: 0;
       animation: appear 1.2s ease 1.75s both;
@@ -252,14 +272,12 @@
       min-height: 360px;
     }
 
-    /* Gradient panels */
     .vis--fire    { background: linear-gradient(148deg, #0D0805 0%, #271206 55%, #3C1C08 100%); }
     .vis--water   { background: linear-gradient(148deg, #04080E 0%, #0A1828 55%, #0E2240 100%); }
     .vis--island  { background: linear-gradient(148deg, #050E08 0%, #0A2014 55%, #102E1A 100%); }
     .vis--dark    { background: linear-gradient(148deg, #06050F 0%, #100A22 55%, #1A1038 100%); }
     .vis--gift    { background: linear-gradient(148deg, #0A0708 0%, #1C100A 55%, #2E180A 100%); }
 
-    /* Photo panels */
     .vis--photo {
       background-size: cover;
       background-position: center;
@@ -479,6 +497,127 @@
       line-height: 1.65;
     }
 
+    /* ─── GALLERY ────────────────────────────────────────────────── */
+    .gallery {
+      padding: 8rem 2rem;
+      background: var(--bg2);
+      text-align: center;
+    }
+
+    .gallery__eyebrow {
+      font-family: var(--f-utility);
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.6em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .gallery__title {
+      font-family: var(--f-display);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text);
+      margin-bottom: 3.5rem;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.7s ease 0.12s, transform 0.7s ease 0.12s;
+    }
+
+    .gallery__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      max-width: 900px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.9s ease 0.24s, transform 0.9s ease 0.24s;
+    }
+
+    .gallery__item {
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+
+    .gallery__item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      image-orientation: from-image;
+      display: block;
+      transition: transform 0.7s ease;
+    }
+
+    .gallery__item:hover img { transform: scale(1.04); }
+
+    .gallery.is-visible .gallery__eyebrow,
+    .gallery.is-visible .gallery__title,
+    .gallery.is-visible .gallery__grid { opacity: 1; transform: none; }
+
+    /* ─── FAMILY ─────────────────────────────────────────────────── */
+    .family {
+      background: var(--c-void);
+      overflow: hidden;
+    }
+
+    .family__photo-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .family__photo {
+      width: 100%;
+      max-height: 82vh;
+      object-fit: cover;
+      object-position: center top;
+      image-orientation: from-image;
+      display: block;
+    }
+
+    .family__photo-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(18,17,26,0.05) 0%, rgba(18,17,26,0.65) 100%);
+    }
+
+    .family__caption {
+      padding: 5rem 2rem 6rem;
+      text-align: center;
+      background: var(--c-void);
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .family.is-visible .family__caption { opacity: 1; transform: none; }
+
+    .family__line {
+      font-family: var(--f-display);
+      font-size: clamp(1.35rem, 3vw, 2.4rem);
+      font-weight: 300;
+      font-style: italic;
+      color: #EDE3CC;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+
+    .family__line:last-child { margin-bottom: 0; }
+
+    .family__line .tr {
+      color: rgba(223, 160, 90, 0.75) !important;
+      opacity: 1 !important;
+      margin-top: 0.3em;
+    }
+
     /* ─── CLOSING ────────────────────────────────────────────────── */
     .closing {
       position: relative;
@@ -499,7 +638,7 @@
       font-size: clamp(1.25rem, 2.7vw, 2rem);
       color: #EDE3CC;
       line-height: 1.9;
-      max-width: 580px;
+      max-width: 600px;
       margin: 0 auto 2.5rem;
       text-wrap: pretty;
       opacity: 0;
@@ -554,6 +693,7 @@
       .timeline::before { left: 10px; }
       .tl { padding-left: 36px; }
       .tl::before { left: 4px; }
+      .gallery__grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -562,18 +702,28 @@
 <!-- ══════════════ HERO ══════════════ -->
 <section class="hero">
   <canvas id="sparkle-cvs" aria-hidden="true"></canvas>
-  <p class="hero__eyebrow">A day written for you</p>
+  <p class="hero__eyebrow">
+    A day written for you
+    <span class="tr">Senin için yazılmış bir gün</span>
+  </p>
   <h1 class="hero__name">
     Melike.
-    <span class="hero__age">Thirty&#8209;five</span>
+    <span class="hero__age">
+      Thirty&#8209;five
+      <span class="tr">Otuz beş</span>
+    </span>
   </h1>
   <div class="hero__rule" aria-hidden="true"></div>
   <p class="hero__tagline">
     Everything you're about to discover<br>
     has been waiting — told only in riddles.
+    <span class="tr">Keşfedeceğin her şey seni bekliyordu —<br>yalnızca bilmecelerle anlatıldı.</span>
   </p>
   <div class="hero__scroll" aria-hidden="true">
-    <span>Scroll</span>
+    <span>
+      Scroll
+      <span class="tr">Kaydır</span>
+    </span>
     <div class="hero__scroll-line"></div>
   </div>
 </section>
@@ -587,6 +737,12 @@
     Not everything is told at once —
     each riddle is a small clue.<br>
     Keep scrolling.
+    <span class="tr">
+      Bu gün <strong>senin için hazırlandı</strong>.<br>
+      Her şey bir anda söylenmez —<br>
+      her bilmece küçük bir ipucu.<br>
+      Kaydırmaya devam et.
+    </span>
   </p>
 </section>
 
@@ -599,15 +755,22 @@
     aria-hidden="true"
   ></div>
   <div class="riddle__body">
-    <p class="riddle__label" id="r1-label">Riddle I &middot; The First Fire</p>
+    <p class="riddle__label" id="r1-label">
+      Riddle I &middot; The First Fire
+      <span class="tr">Bilmece I · İlk Ateş</span>
+    </p>
     <p class="riddle__text">
       "A small fire sits in the middle of the table.
       You choose what goes on it. You cook.
       Everything is warm. Everything is close."
+      <span class="tr">"Masanın ortasında küçük bir ateş. Sen ne koyacağını seçersin. Sen pişirirsin. Her şey sıcak. Her şey yakın."</span>
     </p>
     <hr class="riddle__rule" aria-hidden="true" />
     <div class="riddle__reveal">
-      <p class="riddle__reveal-label">Your afternoon begins at</p>
+      <p class="riddle__reveal-label">
+        Your afternoon begins at
+        <span class="tr">Öğleden sonran başlıyor</span>
+      </p>
       <p class="riddle__reveal-name">Japanese BBQ · 35 McCaul Street</p>
       <p class="riddle__reveal-time">12:30 — 1:30 PM</p>
     </div>
@@ -623,16 +786,23 @@
     aria-hidden="true"
   ></div>
   <div class="riddle__body">
-    <p class="riddle__label" id="r2-label">Riddle II &middot; The Crossing</p>
+    <p class="riddle__label" id="r2-label">
+      Riddle II &middot; The Crossing
+      <span class="tr">Bilmece II · Geçiş</span>
+    </p>
     <p class="riddle__text">
       "You step onto a boat.
       The city gets smaller behind you.
       The water opens up.
       On the other side — an island."
+      <span class="tr">"Bir tekneye adım atarsın. Şehir arkan da küçülür. Su önünde açılır. Öte yanda — bir ada."</span>
     </p>
     <hr class="riddle__rule" aria-hidden="true" />
     <div class="riddle__reveal">
-      <p class="riddle__reveal-label">Then you board</p>
+      <p class="riddle__reveal-label">
+        Then you board
+        <span class="tr">Ardından bineceğin</span>
+      </p>
       <p class="riddle__reveal-name">Ferry to Centre Island</p>
       <p class="riddle__reveal-time">2:30 — 3:00 PM</p>
     </div>
@@ -648,15 +818,22 @@
     aria-hidden="true"
   ></div>
   <div class="riddle__body">
-    <p class="riddle__label" id="r3-label">Riddle III &middot; Two Wheels</p>
+    <p class="riddle__label" id="r3-label">
+      Riddle III &middot; Two Wheels
+      <span class="tr">Bilmece III · İki Tekerlek</span>
+    </p>
     <p class="riddle__text">
       "Two wheels. A path by the water.
       No rush. No destination.
       Just the lake beside you and the wind."
+      <span class="tr">"İki tekerlek. Suyun kenarında bir yol. Acele yok. Varılacak yer yok. Sadece yanındaki göl ve rüzgar."</span>
     </p>
     <hr class="riddle__rule" aria-hidden="true" />
     <div class="riddle__reveal">
-      <p class="riddle__reveal-label">The island is yours to explore by</p>
+      <p class="riddle__reveal-label">
+        The island is yours to explore by
+        <span class="tr">Adayı keşfetmek için</span>
+      </p>
       <p class="riddle__reveal-name">Biking on Centre Island</p>
       <p class="riddle__reveal-time">3:30 — 5:30 PM</p>
     </div>
@@ -670,18 +847,25 @@
     <span class="riddle__glyph">✨</span>
   </div>
   <div class="riddle__body">
-    <p class="riddle__label" id="r4-label">Riddle IV &middot; After Dark</p>
+    <p class="riddle__label" id="r4-label">
+      Riddle IV &middot; After Dark
+      <span class="tr">Bilmece IV · Karanlıktan Sonra</span>
+    </p>
     <p class="riddle__text">
       "A room full of people.
       Nobody reads from a script.
       Nobody knows what happens next —
       not even the ones on stage."
+      <span class="tr">"Dolu bir salon. Kimse senaryodan okumaz. Kimse ne olacağını bilmez — sahnedekiler bile."</span>
     </p>
     <hr class="riddle__rule" aria-hidden="true" />
     <div class="riddle__reveal">
-      <p class="riddle__reveal-label">The evening holds</p>
-      <p class="riddle__reveal-name">Second City — Live Comedy & Improv</p>
-      <p class="riddle__reveal-time">8:00 PM</p>
+      <p class="riddle__reveal-label">
+        The evening holds
+        <span class="tr">Akşamın sürprizi</span>
+      </p>
+      <p class="riddle__reveal-name">Second City — Live Comedy &amp; Improv</p>
+      <p class="riddle__reveal-time">8:30 PM</p>
     </div>
   </div>
 </section>
@@ -693,18 +877,31 @@
     <span class="riddle__glyph">🎻</span>
   </div>
   <div class="riddle__body">
-    <p class="riddle__label" id="r5-label">Riddle V &middot; The Gift</p>
+    <p class="riddle__label" id="r5-label">
+      Riddle V &middot; The Gift
+      <span class="tr">Bilmece V · Hediye</span>
+    </p>
     <p class="riddle__text">
       "Two things have been waiting all week.
       One is green, sweet, and made just for you.
       The other has four strings.
       You said you always wanted to learn."
+      <span class="tr">"İki şey tüm hafta seni bekledi. Biri yeşil, tatlı ve sadece senin için yapıldı. Diğerinin dört teli var. Her zaman öğrenmek istediğini söylemiştin."</span>
     </p>
     <hr class="riddle__rule" aria-hidden="true" />
     <div class="riddle__reveal">
-      <p class="riddle__reveal-label">And waiting at the end of it all</p>
-      <p class="riddle__reveal-name">A pistachio cake. And a cello — with lessons.</p>
-      <p class="riddle__reveal-time">For you.</p>
+      <p class="riddle__reveal-label">
+        And waiting at the end of it all
+        <span class="tr">Ve her şeyin sonunda seni bekleyen</span>
+      </p>
+      <p class="riddle__reveal-name">
+        A pistachio cake. And a cello — with lessons.
+        <span class="tr">Bir antep fıstıklı pasta. Ve bir çello — derslerle birlikte.</span>
+      </p>
+      <p class="riddle__reveal-time">
+        For you.
+        <span class="tr">Senin için.</span>
+      </p>
     </div>
   </div>
 </section>
@@ -712,41 +909,125 @@
 
 <!-- ══════════════ FINALE ══════════════ -->
 <section class="finale observe">
-  <p class="finale__eyebrow">The Full Picture</p>
-  <h2 class="finale__title">Your Day, Revealed.</h2>
+  <p class="finale__eyebrow">
+    The Full Picture
+    <span class="tr">Tüm Tablo</span>
+  </p>
+  <h2 class="finale__title">
+    Your Day, Revealed.
+    <span class="tr">Günün Ortaya Çıktı.</span>
+  </h2>
 
   <div class="timeline" role="list">
 
     <div class="tl" role="listitem">
       <p class="tl__time">12:30 PM</p>
       <p class="tl__name">Japanese BBQ · 35 McCaul Street</p>
-      <p class="tl__note">Fire at the table. Every bite chosen by hand.</p>
+      <p class="tl__note">
+        Fire at the table. Every bite chosen by hand.
+        <span class="tr">Masada ateş. Her lokma elle seçildi.</span>
+      </p>
     </div>
 
     <div class="tl" role="listitem">
       <p class="tl__time">2:30 PM</p>
       <p class="tl__name">Ferry to Centre Island</p>
-      <p class="tl__note">The city shrinks behind you. An island waits on the other side.</p>
+      <p class="tl__note">
+        The city shrinks behind you. An island waits on the other side.
+        <span class="tr">Şehir arkan da küçülür. Diğer yanda bir ada bekliyor.</span>
+      </p>
     </div>
 
     <div class="tl" role="listitem">
       <p class="tl__time">3:30 PM</p>
-      <p class="tl__name">Biking on the Island</p>
-      <p class="tl__note">Two hours, two wheels, the lake always beside you.</p>
+      <p class="tl__name">
+        Biking on the Island
+        <span class="tr">Adada Bisiklet</span>
+      </p>
+      <p class="tl__note">
+        Two hours, two wheels, the lake always beside you.
+        <span class="tr">İki saat, iki tekerlek, göl hep yanında.</span>
+      </p>
     </div>
 
     <div class="tl" role="listitem">
-      <p class="tl__time">8:00 PM</p>
-      <p class="tl__name">Second City — Live Comedy & Improv</p>
-      <p class="tl__note">Nobody has a script. That's the whole point.</p>
+      <p class="tl__time">8:30 PM</p>
+      <p class="tl__name">Second City — Live Comedy &amp; Improv</p>
+      <p class="tl__note">
+        Nobody has a script. That's the whole point.
+        <span class="tr">Kimsenin senaryosu yok. Mesele de bu zaten.</span>
+      </p>
     </div>
 
     <div class="tl" role="listitem">
-      <p class="tl__time">To end it all</p>
-      <p class="tl__name">A pistachio cake &amp; a cello</p>
-      <p class="tl__note">With lessons — because 35 is the perfect year to begin something new.</p>
+      <p class="tl__time">
+        To end it all
+        <span class="tr">Hepsinin sonunda</span>
+      </p>
+      <p class="tl__name">
+        A pistachio cake &amp; a cello
+        <span class="tr">Antep fıstıklı pasta ve bir çello</span>
+      </p>
+      <p class="tl__note">
+        With lessons — because 35 is the perfect year to begin something new.
+        <span class="tr">Derslerle birlikte — çünkü 35, yeni bir şeye başlamak için en güzel yıl.</span>
+      </p>
     </div>
 
+  </div>
+</section>
+
+
+<!-- ══════════════ GALLERY ══════════════ -->
+<section class="gallery observe">
+  <p class="gallery__eyebrow">
+    Moments
+    <span class="tr">Anlar</span>
+  </p>
+  <h2 class="gallery__title">
+    A Few of My Favourites
+    <span class="tr">En Sevdiklerimden Birkaçı</span>
+  </h2>
+  <div class="gallery__grid">
+    <div class="gallery__item">
+      <img src="images/couple-1.jpeg" alt="Us" loading="lazy" />
+    </div>
+    <div class="gallery__item">
+      <img src="images/couple-2.jpeg" alt="Us at night" loading="lazy" />
+    </div>
+    <div class="gallery__item">
+      <img src="images/melike-swing.jpeg" alt="Melike on a swing" loading="lazy" />
+    </div>
+    <div class="gallery__item">
+      <img src="images/melike-aura.jpeg" alt="Melike with Aura" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ FAMILY ══════════════ -->
+<section class="family observe">
+  <div class="family__photo-wrap">
+    <img
+      class="family__photo"
+      src="images/family.jpeg"
+      alt="Family around the table"
+      loading="lazy"
+    />
+  </div>
+  <div class="family__caption">
+    <p class="family__line">
+      You are always with me wherever I am.
+      <span class="tr">Nerede olursam olayım, hep yanımdası.</span>
+    </p>
+    <p class="family__line">
+      And on my special days, I miss each of you so much.
+      <span class="tr">Ve özel günlerimde, hepinizi çok özlüyorum.</span>
+    </p>
+    <p class="family__line">
+      I love you mom, dad and sister.
+      <span class="tr">Seni seviyorum anne, baba ve kardeşim.</span>
+    </p>
   </div>
 </section>
 
@@ -757,8 +1038,12 @@
     "Thirty-five years of being <em>you</em>.
     Curious. Warm. Fully yourself.
     This day is for you — and so is everything after."
+    <span class="tr">"Otuz beş yıldır kendin oldun. Meraklı. Sıcak. Tamamen sen. Bu gün senin için — ve bundan sonra her şey de öyle."</span>
   </blockquote>
-  <p class="closing__from">With love</p>
+  <p class="closing__from">
+    With love
+    <span class="tr">Sevgiyle</span>
+  </p>
 </section>
 
 
