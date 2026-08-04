@@ -12,7 +12,6 @@
   <style>
     /* ─── Design Tokens ─────────────────────────────────────────── */
     :root {
-      /* raw palette */
       --c-void:       #12111A;
       --c-dusk:       #221D30;
       --c-amber:      #C9783A;
@@ -24,7 +23,6 @@
       --c-gold:       #9E7B42;
       --c-gold-soft:  #B89560;
 
-      /* semantic tokens — light default */
       --bg:          var(--c-parchment);
       --bg2:         var(--c-parchment2);
       --text:        var(--c-ink);
@@ -33,12 +31,10 @@
       --accent-soft: var(--c-amber-soft);
       --rule:        var(--c-gold-soft);
 
-      /* type */
       --f-display: 'Cormorant Garamond', Georgia, serif;
       --f-utility: 'Jost', system-ui, sans-serif;
     }
 
-    /* dark via OS */
     @media (prefers-color-scheme: dark) {
       :root {
         --bg:          var(--c-void);
@@ -50,7 +46,6 @@
         --rule:        var(--c-gold);
       }
     }
-    /* dark via toggle */
     :root[data-theme="dark"] {
       --bg:          var(--c-void);
       --bg2:         var(--c-dusk);
@@ -71,12 +66,7 @@
     }
 
     /* ─── Reset ─────────────────────────────────────────────────── */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
     body {
@@ -193,7 +183,7 @@
     .hero__scroll-line {
       width: 1px;
       height: 50px;
-      background: linear-gradient(to bottom, rgba(201, 120, 58, 0.65), transparent);
+      background: linear-gradient(to bottom, rgba(201,120,58,0.65), transparent);
       animation: breathe 2.8s ease-in-out infinite;
     }
 
@@ -250,11 +240,9 @@
       min-height: 80vh;
     }
 
-    /* Flip: visual right, text left */
     .riddle--flip .riddle__vis  { order: 2; }
     .riddle--flip .riddle__body { order: 1; }
 
-    /* Visual environment panel */
     .riddle__vis {
       position: relative;
       display: flex;
@@ -264,13 +252,30 @@
       min-height: 360px;
     }
 
-    .vis--morning  { background: linear-gradient(148deg, #0D0805 0%, #271206 55%, #3C1C08 100%); }
-    .vis--pause    { background: linear-gradient(148deg, #040E0C 0%, #0C2018 55%, #142E20 100%); }
-    .vis--discover { background: linear-gradient(148deg, #050810 0%, #0C1628 55%, #11203E 100%); }
-    .vis--golden   { background: linear-gradient(148deg, #130705 0%, #3A1005 45%, #641C06 75%, #8A2C08 100%); }
-    .vis--feast    { background: linear-gradient(148deg, #08050F 0%, #180E28 50%, #221440 100%); }
+    /* Gradient panels */
+    .vis--fire    { background: linear-gradient(148deg, #0D0805 0%, #271206 55%, #3C1C08 100%); }
+    .vis--water   { background: linear-gradient(148deg, #04080E 0%, #0A1828 55%, #0E2240 100%); }
+    .vis--island  { background: linear-gradient(148deg, #050E08 0%, #0A2014 55%, #102E1A 100%); }
+    .vis--dark    { background: linear-gradient(148deg, #06050F 0%, #100A22 55%, #1A1038 100%); }
+    .vis--gift    { background: linear-gradient(148deg, #0A0708 0%, #1C100A 55%, #2E180A 100%); }
+
+    /* Photo panels */
+    .vis--photo {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .vis--photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(8, 4, 2, 0.28);
+    }
 
     .riddle__glyph {
+      position: relative;
+      z-index: 1;
       font-size: clamp(5rem, 10vw, 8.5rem);
       line-height: 1;
       filter: drop-shadow(0 10px 45px rgba(0,0,0,0.55));
@@ -282,7 +287,6 @@
 
     .riddle.is-visible .riddle__glyph { opacity: 1; transform: none; }
 
-    /* Text body */
     .riddle__body {
       display: flex;
       flex-direction: column;
@@ -291,7 +295,6 @@
       background: var(--bg);
     }
 
-    /* Staggered children */
     .riddle__label,
     .riddle__text,
     .riddle__rule,
@@ -364,7 +367,6 @@
       font-variant-numeric: tabular-nums;
     }
 
-    /* Reveal on scroll */
     .riddle.is-visible .riddle__label,
     .riddle.is-visible .riddle__text,
     .riddle.is-visible .riddle__rule,
@@ -408,12 +410,8 @@
     }
 
     .finale.is-visible .finale__eyebrow,
-    .finale.is-visible .finale__title {
-      opacity: 1;
-      transform: none;
-    }
+    .finale.is-visible .finale__title { opacity: 1; transform: none; }
 
-    /* Timeline */
     .timeline {
       max-width: 560px;
       margin: 0 auto;
@@ -428,7 +426,7 @@
       top: 6px;
       bottom: 32px;
       width: 1px;
-      background: linear-gradient(to bottom, var(--c-amber), rgba(201, 120, 58, 0));
+      background: linear-gradient(to bottom, var(--c-amber), rgba(201,120,58,0));
     }
 
     .tl {
@@ -452,10 +450,7 @@
       box-shadow: 0 0 0 3px var(--c-void), 0 0 0 5px var(--c-amber);
     }
 
-    .finale.is-visible .tl {
-      opacity: 1;
-      transform: none;
-    }
+    .finale.is-visible .tl { opacity: 1; transform: none; }
 
     .tl__time {
       font-family: var(--f-utility);
@@ -486,9 +481,15 @@
 
     /* ─── CLOSING ────────────────────────────────────────────────── */
     .closing {
-      background: var(--bg);
+      position: relative;
       padding: 10rem 2rem;
       text-align: center;
+      background-image:
+        linear-gradient(rgba(18, 17, 26, 0.72), rgba(18, 17, 26, 0.82)),
+        url('images/closing.jpeg');
+      background-size: cover;
+      background-position: center 25%;
+      color: #EDE3CC;
     }
 
     .closing__quote {
@@ -496,7 +497,7 @@
       font-style: italic;
       font-weight: 300;
       font-size: clamp(1.25rem, 2.7vw, 2rem);
-      color: var(--text);
+      color: #EDE3CC;
       line-height: 1.9;
       max-width: 580px;
       margin: 0 auto 2.5rem;
@@ -506,10 +507,7 @@
       transition: opacity 0.9s ease, transform 0.9s ease;
     }
 
-    .closing__quote em {
-      color: var(--accent);
-      font-style: italic;
-    }
+    .closing__quote em { color: var(--c-amber-soft); }
 
     .closing__from {
       font-family: var(--f-utility);
@@ -517,7 +515,7 @@
       font-weight: 400;
       letter-spacing: 0.6em;
       text-transform: uppercase;
-      color: var(--text-sub);
+      color: rgba(237, 227, 204, 0.5);
       opacity: 0;
       transition: opacity 0.8s ease 0.22s;
     }
@@ -548,16 +546,11 @@
 
     /* ─── Responsive ─────────────────────────────────────────────── */
     @media (max-width: 700px) {
-      .riddle {
-        grid-template-columns: 1fr;
-      }
-      /* restore DOM order on mobile */
+      .riddle { grid-template-columns: 1fr; }
       .riddle--flip .riddle__vis,
       .riddle--flip .riddle__body { order: unset; }
-
-      .riddle__vis  { min-height: 220px; }
+      .riddle__vis  { min-height: 240px; }
       .riddle__body { padding: 3rem 1.5rem; }
-
       .timeline::before { left: 10px; }
       .tl { padding-left: 36px; }
       .tl::before { left: 4px; }
@@ -569,21 +562,16 @@
 <!-- ══════════════ HERO ══════════════ -->
 <section class="hero">
   <canvas id="sparkle-cvs" aria-hidden="true"></canvas>
-
   <p class="hero__eyebrow">A day written for you</p>
-
   <h1 class="hero__name">
     Melike.
     <span class="hero__age">Thirty&#8209;five</span>
   </h1>
-
   <div class="hero__rule" aria-hidden="true"></div>
-
   <p class="hero__tagline">
     Everything you're about to discover<br>
     has been waiting — told only in riddles.
   </p>
-
   <div class="hero__scroll" aria-hidden="true">
     <span>Scroll</span>
     <div class="hero__scroll-line"></div>
@@ -595,118 +583,128 @@
 <section class="intro observe">
   <span class="intro__num" aria-hidden="true">35</span>
   <p class="intro__text">
-    This day was <strong>written for you</strong> — not told outright,
-    but left in clues, in warmth, in small beautiful things.<br>
-    Each riddle is a door. Walk through them.
+    This day was <strong>made for you</strong>.<br>
+    Not everything is told at once —
+    each riddle is a small clue.<br>
+    Keep scrolling.
   </p>
 </section>
 
 
-<!-- ══════════════ RIDDLE I ══════════════ -->
+<!-- ══════════════ RIDDLE I · Japanese BBQ ══════════════ -->
 <section class="riddle observe" aria-labelledby="r1-label">
-  <div class="riddle__vis vis--morning" aria-hidden="true">
-    <span class="riddle__glyph">☕</span>
-  </div>
+  <div
+    class="riddle__vis vis--photo"
+    style="background-image: linear-gradient(rgba(10,5,2,0.25), rgba(10,5,2,0.25)), url('images/bbq.png')"
+    aria-hidden="true"
+  ></div>
   <div class="riddle__body">
-    <p class="riddle__label" id="r1-label">Riddle I &middot; Morning</p>
+    <p class="riddle__label" id="r1-label">Riddle I &middot; The First Fire</p>
     <p class="riddle__text">
-      "Where steam curls upward like a quiet conversation
-      and the first light finds a corner table just for you —
-      this is where the day draws its first breath."
+      "A small fire sits in the middle of the table.
+      You choose what goes on it. You cook.
+      Everything is warm. Everything is close."
     </p>
     <hr class="riddle__rule" aria-hidden="true" />
     <div class="riddle__reveal">
-      <p class="riddle__reveal-label">Your morning begins at</p>
-      <p class="riddle__reveal-name">Breakfast at [Café Name]</p>
-      <p class="riddle__reveal-time">09:30</p>
+      <p class="riddle__reveal-label">Your afternoon begins at</p>
+      <p class="riddle__reveal-name">Japanese BBQ · 35 McCaul Street</p>
+      <p class="riddle__reveal-time">12:30 — 1:30 PM</p>
     </div>
   </div>
 </section>
 
 
-<!-- ══════════════ RIDDLE II ══════════════ -->
+<!-- ══════════════ RIDDLE II · Ferry ══════════════ -->
 <section class="riddle riddle--flip observe" aria-labelledby="r2-label">
-  <div class="riddle__vis vis--pause" aria-hidden="true">
-    <span class="riddle__glyph">🌿</span>
-  </div>
+  <div
+    class="riddle__vis vis--photo"
+    style="background-image: linear-gradient(rgba(4,8,14,0.2), rgba(4,8,14,0.2)), url('images/ferry.png')"
+    aria-hidden="true"
+  ></div>
   <div class="riddle__body">
-    <p class="riddle__label" id="r2-label">Riddle II &middot; The Pause</p>
+    <p class="riddle__label" id="r2-label">Riddle II &middot; The Crossing</p>
     <p class="riddle__text">
-      "Here, the world outside is asked to wait.
-      Trained hands carry away everything you have been carrying.
-      You have earned this more than you know."
+      "You step onto a boat.
+      The city gets smaller behind you.
+      The water opens up.
+      On the other side — an island."
     </p>
     <hr class="riddle__rule" aria-hidden="true" />
     <div class="riddle__reveal">
-      <p class="riddle__reveal-label">Then we take you to</p>
-      <p class="riddle__reveal-name">[Spa / Wellness Experience]</p>
-      <p class="riddle__reveal-time">11:00</p>
+      <p class="riddle__reveal-label">Then you board</p>
+      <p class="riddle__reveal-name">Ferry to Centre Island</p>
+      <p class="riddle__reveal-time">2:30 — 3:00 PM</p>
     </div>
   </div>
 </section>
 
 
-<!-- ══════════════ RIDDLE III ══════════════ -->
+<!-- ══════════════ RIDDLE III · Biking ══════════════ -->
 <section class="riddle observe" aria-labelledby="r3-label">
-  <div class="riddle__vis vis--discover" aria-hidden="true">
-    <span class="riddle__glyph">🏛️</span>
-  </div>
+  <div
+    class="riddle__vis vis--photo"
+    style="background-image: linear-gradient(rgba(4,8,4,0.35), rgba(4,8,4,0.35)), url('images/outdoor.jpeg')"
+    aria-hidden="true"
+  ></div>
   <div class="riddle__body">
-    <p class="riddle__label" id="r3-label">Riddle III &middot; The Discovery</p>
+    <p class="riddle__label" id="r3-label">Riddle III &middot; Two Wheels</p>
     <p class="riddle__text">
-      "Older than you by centuries, yet lit as if for the first time
-      in this afternoon's light. Walk where stories are written in stone
-      and the city opens below your feet."
+      "Two wheels. A path by the water.
+      No rush. No destination.
+      Just the lake beside you and the wind."
     </p>
     <hr class="riddle__rule" aria-hidden="true" />
     <div class="riddle__reveal">
-      <p class="riddle__reveal-label">In the afternoon, a walk through</p>
-      <p class="riddle__reveal-name">[Location / Neighbourhood]</p>
-      <p class="riddle__reveal-time">14:00</p>
+      <p class="riddle__reveal-label">The island is yours to explore by</p>
+      <p class="riddle__reveal-name">Biking on Centre Island</p>
+      <p class="riddle__reveal-time">3:30 — 5:30 PM</p>
     </div>
   </div>
 </section>
 
 
-<!-- ══════════════ RIDDLE IV ══════════════ -->
+<!-- ══════════════ RIDDLE IV · Evening ══════════════ -->
 <section class="riddle riddle--flip observe" aria-labelledby="r4-label">
-  <div class="riddle__vis vis--golden" aria-hidden="true">
-    <span class="riddle__glyph">🌅</span>
+  <div class="riddle__vis vis--dark" aria-hidden="true">
+    <span class="riddle__glyph">✨</span>
   </div>
   <div class="riddle__body">
-    <p class="riddle__label" id="r4-label">Riddle IV &middot; Golden Hour</p>
+    <p class="riddle__label" id="r4-label">Riddle IV &middot; After Dark</p>
     <p class="riddle__text">
-      "When the sun tilts its light to amber and begins its slow goodbye,
-      there is a view that belongs to you tonight.
-      Look outward. Let it be enough."
+      "It is dark inside.
+      Things glow that should not glow.
+      You look through glass at a world
+      that never sees the sun."
     </p>
     <hr class="riddle__rule" aria-hidden="true" />
     <div class="riddle__reveal">
-      <p class="riddle__reveal-label">Then something beautiful at</p>
-      <p class="riddle__reveal-name">[Sunset Experience / Viewpoint]</p>
-      <p class="riddle__reveal-time">17:30</p>
+      <p class="riddle__reveal-label">The evening holds</p>
+      <p class="riddle__reveal-name">A surprise — something after dark</p>
+      <p class="riddle__reveal-time">7:30 — 9:00 PM</p>
     </div>
   </div>
 </section>
 
 
-<!-- ══════════════ RIDDLE V ══════════════ -->
+<!-- ══════════════ RIDDLE V · The Gift ══════════════ -->
 <section class="riddle observe" aria-labelledby="r5-label">
-  <div class="riddle__vis vis--feast" aria-hidden="true">
-    <span class="riddle__glyph">🕯️</span>
+  <div class="riddle__vis vis--gift" aria-hidden="true">
+    <span class="riddle__glyph">🎻</span>
   </div>
   <div class="riddle__body">
-    <p class="riddle__label" id="r5-label">Riddle V &middot; The Feast</p>
+    <p class="riddle__label" id="r5-label">Riddle V &middot; The Gift</p>
     <p class="riddle__text">
-      "A table laid by people who love you.
-      A chef who has been expecting you.
-      Tonight, nothing ordinary is allowed."
+      "Two things have been waiting all week.
+      One is green, sweet, and made just for you.
+      The other has four strings.
+      You said you always wanted to learn."
     </p>
     <hr class="riddle__rule" aria-hidden="true" />
     <div class="riddle__reveal">
-      <p class="riddle__reveal-label">The evening ends at</p>
-      <p class="riddle__reveal-name">Dinner at [Restaurant Name]</p>
-      <p class="riddle__reveal-time">20:00</p>
+      <p class="riddle__reveal-label">And waiting at the end of it all</p>
+      <p class="riddle__reveal-name">A pistachio cake. And a cello — with lessons.</p>
+      <p class="riddle__reveal-time">For you.</p>
     </div>
   </div>
 </section>
@@ -720,33 +718,33 @@
   <div class="timeline" role="list">
 
     <div class="tl" role="listitem">
-      <p class="tl__time">09:30</p>
-      <p class="tl__name">Breakfast at [Café Name]</p>
-      <p class="tl__note">The first warmth of the day. A corner table, a good cup, time to breathe.</p>
+      <p class="tl__time">12:30 PM</p>
+      <p class="tl__name">Japanese BBQ · 35 McCaul Street</p>
+      <p class="tl__note">Fire at the table. Every bite chosen by hand.</p>
     </div>
 
     <div class="tl" role="listitem">
-      <p class="tl__time">11:00</p>
-      <p class="tl__name">[Spa / Wellness Experience]</p>
-      <p class="tl__note">Because you deserve to be looked after, today more than ever.</p>
+      <p class="tl__time">2:30 PM</p>
+      <p class="tl__name">Ferry to Centre Island</p>
+      <p class="tl__note">The city shrinks behind you. An island waits on the other side.</p>
     </div>
 
     <div class="tl" role="listitem">
-      <p class="tl__time">14:00</p>
-      <p class="tl__name">A Walk Through [Location]</p>
-      <p class="tl__note">Somewhere beautiful, somewhere that feels like time stood still for a moment.</p>
+      <p class="tl__time">3:30 PM</p>
+      <p class="tl__name">Biking on the Island</p>
+      <p class="tl__note">Two hours, two wheels, the lake always beside you.</p>
     </div>
 
     <div class="tl" role="listitem">
-      <p class="tl__time">17:30</p>
-      <p class="tl__name">[Sunset Experience]</p>
-      <p class="tl__note">The sky as a backdrop. A moment to mark this year.</p>
+      <p class="tl__time">7:30 PM</p>
+      <p class="tl__name">A Surprise After Dark</p>
+      <p class="tl__note">Something the night is keeping until then.</p>
     </div>
 
     <div class="tl" role="listitem">
-      <p class="tl__time">20:00</p>
-      <p class="tl__name">Dinner at [Restaurant Name]</p>
-      <p class="tl__note">The perfect end. The best people. The best table.</p>
+      <p class="tl__time">To end it all</p>
+      <p class="tl__name">A pistachio cake &amp; a cello</p>
+      <p class="tl__note">With lessons — because 35 is the perfect year to begin something new.</p>
     </div>
 
   </div>
@@ -756,8 +754,9 @@
 <!-- ══════════════ CLOSING ══════════════ -->
 <section class="closing observe">
   <blockquote class="closing__quote">
-    "Thirty-five years of being <em>exactly you</em> — curious, warm, entirely your own.
-    Here's to this day, and everything that comes after."
+    "Thirty-five years of being <em>you</em>.
+    Curious. Warm. Fully yourself.
+    This day is for you — and so is everything after."
   </blockquote>
   <p class="closing__from">With love</p>
 </section>
@@ -824,7 +823,6 @@
 const obs = new IntersectionObserver((entries) => {
   for (const e of entries) {
     if (!e.isIntersecting) continue;
-    /* stagger timeline dots via a CSS custom property */
     e.target.querySelectorAll('.tl').forEach((el, i) => {
       el.style.setProperty('--tl-d', `${0.18 + i * 0.13}s`);
     });
