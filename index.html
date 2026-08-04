@@ -652,15 +652,27 @@
       font-family: var(--f-utility);
       font-size: 0.6rem;
       font-weight: 400;
-      letter-spacing: 0.6em;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
       color: rgba(237, 227, 204, 0.5);
       opacity: 0;
       transition: opacity 0.8s ease 0.22s;
     }
 
+    .closing__name {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      color: rgba(237, 227, 204, 0.82);
+      margin-top: 1.1rem;
+      opacity: 0;
+      transition: opacity 0.9s ease 0.45s;
+    }
+
     .closing.is-visible .closing__quote { opacity: 1; transform: none; }
     .closing.is-visible .closing__from  { opacity: 1; }
+    .closing.is-visible .closing__name  { opacity: 1; }
 
     /* ─── Keyframes ──────────────────────────────────────────────── */
     @keyframes appear {
@@ -1041,8 +1053,12 @@
     <span class="tr">"Otuz beş yıldır kendin oldun. Meraklı. Sıcak. Tamamen sen. Bu gün senin için — ve bundan sonra her şey de öyle."</span>
   </blockquote>
   <p class="closing__from">
-    With love
-    <span class="tr">Sevgiyle</span>
+    With love to my dear Melikeçım, eshgham,
+    <span class="tr">Sevgiyle, canım Melikeçım, eshgham,</span>
+  </p>
+  <p class="closing__name">
+    From Mohsen
+    <span class="tr">Mohsen'den</span>
   </p>
 </section>
 
