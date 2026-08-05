@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy 35th, Melike</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* ─── Design Tokens ─────────────────────────────────────────── */
+    :root {
+      --c-void:       #12111A;
+      --c-dusk:       #221D30;
+      --c-amber:      #C9783A;
+      --c-amber-soft: #DFA05A;
+      --c-parchment:  #F5EFE2;
+      --c-parchment2: #EDE3CC;
+      --c-ink:        #1E1828;
+      --c-twilight:   #7A6E8A;
+      --c-gold:       #9E7B42;
+      --c-gold-soft:  #B89560;
+
+      --bg:          var(--c-parchment);
+      --bg2:         var(--c-parchment2);
+      --text:        var(--c-ink);
+      --text-sub:    var(--c-twilight);
+      --accent:      var(--c-amber);
+      --accent-soft: var(--c-amber-soft);
+      --rule:        var(--c-gold-soft);
+
+      --f-display: 'Cormorant Garamond', Georgia, serif;
+      --f-utility: 'Jost', system-ui, sans-serif;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:          var(--c-void);
+        --bg2:         var(--c-dusk);
+        --text:        #EDE3CC;
+        --text-sub:    #9A8EAA;
+        --accent:      var(--c-amber-soft);
+        --accent-soft: var(--c-amber);
+        --rule:        var(--c-gold);
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg:          var(--c-void);
+      --bg2:         var(--c-dusk);
+      --text:        #EDE3CC;
+      --text-sub:    #9A8EAA;
+      --accent:      var(--c-amber-soft);
+      --accent-soft: var(--c-amber);
+      --rule:        var(--c-gold);
+    }
+    :root[data-theme="light"] {
+      --bg:          var(--c-parchment);
+      --bg2:         var(--c-parchment2);
+      --text:        var(--c-ink);
+      --text-sub:    var(--c-twilight);
+      --accent:      var(--c-amber);
+      --accent-soft: var(--c-amber-soft);
+      --rule:        var(--c-gold-soft);
+    }
+
+    /* ─── Reset ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--f-display);
+      font-size: clamp(17px, 1.1vw, 19px);
+      line-height: 1.65;
+      overflow-x: hidden;
+      transition: background 0.4s ease, color 0.4s ease;
+    }
+
+    /* ─── Turkish Translation ────────────────────────────────────── */
+    .tr {
+      display: block;
+      font-size: 0.72em;
+      font-style: italic;
+      font-weight: 300;
+      margin-top: 0.25em;
+      text-transform: none;
+      letter-spacing: 0.02em;
+      opacity: 0.68;
+    }
+
+    .hero .tr,
+    .closing .tr,
+    .family .tr {
+      color: rgba(223, 160, 90, 0.8);
+      opacity: 1;
+    }
+
+    /* ─── HERO ───────────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      background: var(--c-void);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 2rem 6rem;
+      overflow: hidden;
+    }
+
+    #sparkle-cvs {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .hero__eyebrow {
+      position: relative;
+      font-family: var(--f-utility);
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.6em;
+      text-transform: uppercase;
+      color: var(--c-amber-soft);
+      margin-bottom: 2.2rem;
+      opacity: 0;
+      animation: appear 1.4s ease 0.5s both;
+    }
+
+    .hero__name {
+      position: relative;
+      font-family: var(--f-display);
+      font-size: clamp(5rem, 16vw, 11rem);
+      font-weight: 300;
+      font-style: italic;
+      color: #F0E8D8;
+      line-height: 0.88;
+      letter-spacing: -0.02em;
+      margin-bottom: 0;
+      opacity: 0;
+      animation: appear 1.8s ease 0.85s both;
+    }
+
+    .hero__age {
+      display: block;
+      font-style: normal;
+      font-family: var(--f-utility);
+      font-size: clamp(0.75rem, 1.5vw, 1rem);
+      font-weight: 400;
+      letter-spacing: 0.5em;
+      color: var(--c-amber);
+      text-transform: uppercase;
+      margin-top: 1.4rem;
+    }
+
+    .hero__rule {
+      position: relative;
+      width: 72px;
+      height: 1px;
+      background: var(--c-gold-soft);
+      margin: 2.8rem auto 2rem;
+      opacity: 0;
+      animation: appear 1s ease 1.5s both;
+    }
+
+    .hero__tagline {
+      position: relative;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+      color: rgba(240, 232, 216, 0.55);
+      max-width: 400px;
+      line-height: 2;
+      opacity: 0;
+      animation: appear 1.2s ease 1.75s both;
+    }
+
+    .hero__scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.65rem;
+      color: rgba(240, 232, 216, 0.3);
+      font-family: var(--f-utility);
+      font-size: 0.58rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: appear 1s ease 2.4s both;
+    }
+
+    .hero__scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, rgba(201,120,58,0.65), transparent);
+      animation: breathe 2.8s ease-in-out infinite;
+    }
+
+    /* ─── MYSTERY PANELS ─────────────────────────────────────────── */
+    .panel {
+      display: grid;
+      grid-template-columns: 45fr 55fr;
+      min-height: 75vh;
+    }
+
+    .panel--flip .panel__vis  { order: 2; }
+    .panel--flip .panel__body { order: 1; }
+
+    .panel__vis {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      min-height: 340px;
+    }
+
+    .vis--fire  { background: linear-gradient(148deg, #0D0805 0%, #271206 55%, #3C1C08 100%); }
+    .vis--dark  { background: linear-gradient(148deg, #06050F 0%, #100A22 55%, #1A1038 100%); }
+    .vis--gift  { background: linear-gradient(148deg, #0A0708 0%, #1C100A 55%, #2E180A 100%); }
+
+    .vis--photo {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .vis--photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(8, 4, 2, 0.28);
+    }
+
+    .panel__glyph {
+      position: relative;
+      z-index: 1;
+      font-size: clamp(5rem, 10vw, 8.5rem);
+      line-height: 1;
+      filter: drop-shadow(0 10px 45px rgba(0,0,0,0.55));
+      opacity: 0;
+      transform: translateY(16px) scale(0.82);
+      transition: opacity 1.1s ease 0.25s,
+                  transform 1.3s cubic-bezier(0.22, 1, 0.36, 1) 0.25s;
+    }
+
+    .panel.is-visible .panel__glyph { opacity: 1; transform: none; }
+
+    .panel__body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: clamp(3rem, 5vw, 5.5rem) clamp(2rem, 5vw, 5rem);
+      background: var(--bg);
+    }
+
+    .panel__phrase {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+      color: var(--text);
+      line-height: 1.55;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.9s ease 0.1s, transform 0.9s ease 0.1s;
+    }
+
+    .panel__rule {
+      width: 36px;
+      height: 1px;
+      background: var(--rule);
+      border: none;
+      margin-top: 2rem;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.6s ease 0.35s, transform 0.6s ease 0.35s;
+    }
+
+    .panel.is-visible .panel__phrase,
+    .panel.is-visible .panel__rule { opacity: 1; transform: none; }
+
+    /* ─── GALLERY ────────────────────────────────────────────────── */
+    .gallery {
+      padding: 8rem 2rem;
+      background: var(--bg2);
+      text-align: center;
+    }
+
+    .gallery__eyebrow {
+      font-family: var(--f-utility);
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.6em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .gallery__title {
+      font-family: var(--f-display);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text);
+      margin-bottom: 3.5rem;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.7s ease 0.12s, transform 0.7s ease 0.12s;
+    }
+
+    .gallery__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      max-width: 900px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.9s ease 0.24s, transform 0.9s ease 0.24s;
+    }
+
+    .gallery__item {
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+
+    .gallery__item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      image-orientation: from-image;
+      display: block;
+      transition: transform 0.7s ease;
+    }
+
+    .gallery__item:hover img { transform: scale(1.04); }
+
+    .gallery.is-visible .gallery__eyebrow,
+    .gallery.is-visible .gallery__title,
+    .gallery.is-visible .gallery__grid { opacity: 1; transform: none; }
+
+    /* ─── FAMILY ─────────────────────────────────────────────────── */
+    .family {
+      background: var(--c-void);
+      overflow: hidden;
+    }
+
+    .family__photo-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .family__photo {
+      width: 100%;
+      max-height: 82vh;
+      object-fit: cover;
+      object-position: center top;
+      image-orientation: from-image;
+      display: block;
+    }
+
+    .family__photo-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(18,17,26,0.05) 0%, rgba(18,17,26,0.65) 100%);
+    }
+
+    .family__caption {
+      padding: 5rem 2rem 6rem;
+      text-align: center;
+      background: var(--c-void);
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .family.is-visible .family__caption { opacity: 1; transform: none; }
+
+    .family__line {
+      font-family: var(--f-display);
+      font-size: clamp(1.35rem, 3vw, 2.4rem);
+      font-weight: 300;
+      font-style: italic;
+      color: #EDE3CC;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+
+    .family__line:last-child { margin-bottom: 0; }
+
+    .family__line .tr {
+      color: rgba(223, 160, 90, 0.75) !important;
+      opacity: 1 !important;
+      margin-top: 0.3em;
+    }
+
+    /* ─── CLOSING / LOVE LETTER ──────────────────────────────────── */
+    .closing {
+      position: relative;
+      padding: 10rem 2rem 8rem;
+      text-align: center;
+      background-image:
+        linear-gradient(rgba(18, 17, 26, 0.75), rgba(18, 17, 26, 0.88)),
+        url('images/closing.jpeg');
+      background-size: cover;
+      background-position: center 25%;
+      color: #EDE3CC;
+    }
+
+    .closing__eyebrow {
+      font-family: var(--f-utility);
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--c-amber-soft);
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .closing.is-visible .closing__eyebrow { opacity: 1; transform: none; }
+
+    .closing__letter {
+      max-width: 620px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .closing__para {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.1rem, 2.2vw, 1.65rem);
+      color: #EDE3CC;
+      line-height: 2;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.8s ease var(--p-d, 0s), transform 0.8s ease var(--p-d, 0s);
+    }
+
+    .closing.is-visible .closing__para { opacity: 1; transform: none; }
+
+    .closing__rule {
+      width: 48px;
+      height: 1px;
+      background: var(--c-gold-soft);
+      border: none;
+      margin: 0 auto 3rem;
+      opacity: 0;
+      transition: opacity 0.7s ease 0.6s;
+    }
+
+    .closing.is-visible .closing__rule { opacity: 1; }
+
+    .closing__from {
+      font-family: var(--f-utility);
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(237, 227, 204, 0.5);
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.7s ease 0.7s;
+    }
+
+    .closing__name {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      color: rgba(237, 227, 204, 0.82);
+      text-align: center;
+      margin-top: 1.1rem;
+      opacity: 0;
+      transition: opacity 0.9s ease 0.85s;
+    }
+
+    .closing.is-visible .closing__from,
+    .closing.is-visible .closing__name { opacity: 1; }
+
+    /* ─── Keyframes ──────────────────────────────────────────────── */
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: scaleY(1);    opacity: 0.55; }
+      50%       { transform: scaleY(1.2); opacity: 1; }
+    }
+
+    /* ─── Reduced motion ─────────────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 1ms !important;
+        transition-duration: 1ms !important;
+        animation-delay: 0ms !important;
+        transition-delay: 0ms !important;
+      }
+    }
+
+    /* ─── Responsive ─────────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .panel { grid-template-columns: 1fr; }
+      .panel--flip .panel__vis,
+      .panel--flip .panel__body { order: unset; }
+      .panel__vis  { min-height: 260px; }
+      .panel__body { padding: 3rem 1.5rem; }
+      .gallery__grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero">
+  <canvas id="sparkle-cvs" aria-hidden="true"></canvas>
+  <p class="hero__eyebrow">
+    A day made with love
+    <span class="tr">Sevgiyle hazırlanmış bir gün</span>
+  </p>
+  <h1 class="hero__name">
+    Melike.
+    <span class="hero__age">
+      Thirty&#8209;five
+      <span class="tr">Otuz beş</span>
+    </span>
+  </h1>
+  <div class="hero__rule" aria-hidden="true"></div>
+  <p class="hero__tagline">
+    Today is yours.<br>
+    Just let it unfold.
+    <span class="tr">Bugün senindir.<br>Bırak, kendiliğinden açılsın.</span>
+  </p>
+  <div class="hero__scroll" aria-hidden="true">
+    <span>
+      Scroll
+      <span class="tr">Kaydır</span>
+    </span>
+    <div class="hero__scroll-line"></div>
+  </div>
+</section>
+
+
+<!-- ══════════════ PANEL I ══════════════ -->
+<section class="panel observe">
+  <div
+    class="panel__vis vis--photo"
+    style="background-image: linear-gradient(rgba(10,5,2,0.25), rgba(10,5,2,0.25)), url('images/bbq.png')"
+    aria-hidden="true"
+  ></div>
+  <div class="panel__body">
+    <p class="panel__phrase">
+      Warmth at the heart of it all.
+      <span class="tr">Her şeyin merkezinde sıcaklık.</span>
+    </p>
+    <hr class="panel__rule" aria-hidden="true" />
+  </div>
+</section>
+
+
+<!-- ══════════════ PANEL II ══════════════ -->
+<section class="panel panel--flip observe">
+  <div
+    class="panel__vis vis--photo"
+    style="background-image: linear-gradient(rgba(4,8,14,0.2), rgba(4,8,14,0.2)), url('images/ferry.png')"
+    aria-hidden="true"
+  ></div>
+  <div class="panel__body">
+    <p class="panel__phrase">
+      The water takes you somewhere.
+      <span class="tr">Su seni bir yere götürüyor.</span>
+    </p>
+    <hr class="panel__rule" aria-hidden="true" />
+  </div>
+</section>
+
+
+<!-- ══════════════ PANEL III ══════════════ -->
+<section class="panel observe">
+  <div
+    class="panel__vis vis--photo"
+    style="background-image: linear-gradient(rgba(4,8,4,0.35), rgba(4,8,4,0.35)), url('images/outdoor.jpeg')"
+    aria-hidden="true"
+  ></div>
+  <div class="panel__body">
+    <p class="panel__phrase">
+      Fresh air. Open paths.<br>Just breathe.
+      <span class="tr">Taze hava. Açık yollar.<br>Sadece nefes al.</span>
+    </p>
+    <hr class="panel__rule" aria-hidden="true" />
+  </div>
+</section>
+
+
+<!-- ══════════════ PANEL IV ══════════════ -->
+<section class="panel panel--flip observe">
+  <div class="panel__vis vis--dark" aria-hidden="true">
+    <span class="panel__glyph">✨</span>
+  </div>
+  <div class="panel__body">
+    <p class="panel__phrase">
+      The night has its own surprise.
+      <span class="tr">Gecenin kendi sürprizi var.</span>
+    </p>
+    <hr class="panel__rule" aria-hidden="true" />
+  </div>
+</section>
+
+
+<!-- ══════════════ PANEL V ══════════════ -->
+<section class="panel observe">
+  <div class="panel__vis vis--gift" aria-hidden="true">
+    <span class="panel__glyph">🎻</span>
+  </div>
+  <div class="panel__body">
+    <p class="panel__phrase">
+      Something beautiful<br>has been waiting for you.
+      <span class="tr">Güzel bir şey<br>seni bekliyordu.</span>
+    </p>
+    <hr class="panel__rule" aria-hidden="true" />
+  </div>
+</section>
+
+
+<!-- ══════════════ GALLERY ══════════════ -->
+<section class="gallery observe">
+  <p class="gallery__eyebrow">
+    Moments
+    <span class="tr">Anlar</span>
+  </p>
+  <h2 class="gallery__title">
+    A Few of My Favourites
+    <span class="tr">En Sevdiklerimden Birkaçı</span>
+  </h2>
+  <div class="gallery__grid">
+    <div class="gallery__item">
+      <img src="images/couple-1.jpeg" alt="Us" loading="lazy" />
+    </div>
+    <div class="gallery__item">
+      <img src="images/couple-2.jpeg" alt="Us at night" loading="lazy" />
+    </div>
+    <div class="gallery__item">
+      <img src="images/melike-swing.jpeg" alt="Melike on a swing" loading="lazy" />
+    </div>
+    <div class="gallery__item">
+      <img src="images/melike-aura.jpeg" alt="Melike with Aura" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ FAMILY ══════════════ -->
+<section class="family observe">
+  <div class="family__photo-wrap">
+    <img
+      class="family__photo"
+      src="images/family.jpeg"
+      alt="Family around the table"
+      loading="lazy"
+    />
+  </div>
+  <div class="family__caption">
+    <p class="family__line">
+      You are always with me wherever I am.
+      <span class="tr">Nerede olursam olayım, hep yanımdası.</span>
+    </p>
+    <p class="family__line">
+      And on my special days, I miss each of you so much.
+      <span class="tr">Ve özel günlerimde, hepinizi çok özlüyorum.</span>
+    </p>
+    <p class="family__line">
+      I love you mom, dad and sister.
+      <span class="tr">Seni seviyorum anne, baba ve kardeşim.</span>
+    </p>
+  </div>
+</section>
+
+
+<!-- ══════════════ CLOSING / LOVE LETTER ══════════════ -->
+<section class="closing observe">
+  <p class="closing__eyebrow">
+    Happy 35th birthday, my love
+    <span class="tr">İyi ki doğdun, aşkım</span>
+  </p>
+
+  <div class="closing__letter">
+
+    <p class="closing__para" style="--p-d: 0.1s">
+      I love you so much.
+      <span class="tr">Seni çok seviyorum.</span>
+    </p>
+
+    <p class="closing__para" style="--p-d: 0.25s">
+      This past year with you — the amount of growth I've had — I am so
+      grateful to have shared all these moments with you.
+      <span class="tr">Seninle geçen bu yılda ne kadar büyüdüğümü... Tüm bu anları seninle paylaştığım için çok minnettarım.</span>
+    </p>
+
+    <p class="closing__para" style="--p-d: 0.4s">
+      You're such a beautiful person, and you deserve all the love in the world.
+      You're so ambitious, so hardworking — you deserve more and more.
+      <span class="tr">Sen çok güzel bir insansın ve dünyadaki tüm sevgiyi hak ediyorsun. Bu kadar hırslısın, bu kadar çalışkansın — daha fazlasını hak ediyorsun.</span>
+    </p>
+
+    <p class="closing__para" style="--p-d: 0.55s">
+      I love seeing you laugh every single day. You have the most beautiful
+      laugh and love for life, and I hope you continue to keep growing it.
+      <span class="tr">Her gün güldüğünü görmek benim için paha biçilemez. En güzel gülüşe ve hayat sevgisine sahipsin — ve bunların büyümeye devam etmesini diliyorum.</span>
+    </p>
+
+  </div>
+
+  <hr class="closing__rule" aria-hidden="true" />
+
+  <p class="closing__from">
+    With all my love to my dear Melikeçım, eshgham,
+    <span class="tr">Tüm sevgimle, canım Melikeçım, eshgham,</span>
+  </p>
+  <p class="closing__name">
+    From Mohsen
+    <span class="tr">Mohsen'den</span>
+  </p>
+</section>
+
+
+<script>
+/* ─── Ambient particle canvas ─────────────────────────────── */
+(function () {
+  const cvs = document.getElementById('sparkle-cvs');
+  const ctx = cvs.getContext('2d');
+  let W, H, pts;
+
+  function resize() {
+    W = cvs.width  = cvs.offsetWidth;
+    H = cvs.height = cvs.offsetHeight;
+  }
+
+  function mkPt() {
+    return {
+      x:  Math.random() * W,
+      y:  Math.random() * H,
+      r:  Math.random() * 1.5 + 0.4,
+      a:  Math.random() * 0.5 + 0.05,
+      vy: Math.random() * 0.42 + 0.1,
+      vx: (Math.random() - 0.5) * 0.18,
+      da: Math.random() * 0.0022 + 0.001,
+    };
+  }
+
+  function resetPt(p) {
+    p.x  = Math.random() * W;
+    p.y  = H + 4;
+    p.a  = 0;
+    p.r  = Math.random() * 1.5 + 0.4;
+    p.vy = Math.random() * 0.42 + 0.1;
+    p.vx = (Math.random() - 0.5) * 0.18;
+    p.da = Math.random() * 0.0022 + 0.001;
+  }
+
+  function init() { resize(); pts = Array.from({ length: 80 }, mkPt); }
+
+  function tick() {
+    ctx.clearRect(0, 0, W, H);
+    for (const p of pts) {
+      p.y -= p.vy;
+      p.x += p.vx;
+      p.a -= p.da;
+      if (p.a <= 0 || p.y < -4) { resetPt(p); continue; }
+      ctx.globalAlpha = p.a;
+      ctx.fillStyle   = '#DFA05A';
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    requestAnimationFrame(tick);
+  }
+
+  window.addEventListener('resize', resize);
+  init();
+  tick();
+})();
+
+/* ─── Scroll reveals ──────────────────────────────────────── */
+const obs = new IntersectionObserver((entries) => {
+  for (const e of entries) {
+    if (!e.isIntersecting) continue;
+    e.target.classList.add('is-visible');
+  }
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.observe').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
